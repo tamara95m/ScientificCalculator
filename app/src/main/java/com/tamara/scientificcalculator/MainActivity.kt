@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.tamara.scientificcalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var buttonPlus:Button
@@ -17,12 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     var lastNumber:Double=0.0
     var currentOperation:Operation?=null
+    lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
         initView()
         addCallBacks()
+        binding = ActivityMainBinding.inflate(layoutInflater)
     }
 
     private fun addCallBacks() {
