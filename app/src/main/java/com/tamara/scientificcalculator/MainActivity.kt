@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var textNumber: TextView
     lateinit var buttonClear:Button
 
+    var lastNumber:Double=0.0
+    var currentOperation:Operation?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,9 +28,28 @@ class MainActivity : AppCompatActivity() {
     private fun addCallBacks() {
         buttonClear.setOnClickListener {
             clearInput()
-
-
         }
+        buttonPlus.setOnClickListener { prepareOperation(Operation.plus) }
+        buttonMinus.setOnClickListener { prepareOperation(Operation.minus) }
+        buttonMultiplication.setOnClickListener { prepareOperation(Operation.multi) }
+        buttonDiv.setOnClickListener { prepareOperation(Operation.div) }
+        buttonResult.setOnClickListener {
+         val result= doCurrentOperation()
+            textNumber.text=result.toString()
+        }
+
+    }
+
+    private fun doCurrentOperation():Double {
+        val secondNumber=textNumber.text.toString().toDouble()
+   return   when(currentOperation){
+         Operation.plus ->lastNumber + secondNumber
+         Operation.minus ->lastNumber - secondNumber
+         Operation.multi ->lastNumber * secondNumber
+         Operation.div ->lastNumber / secondNumber
+         null ->0.0
+
+      }
     }
 
     private fun initView()
@@ -52,6 +74,12 @@ class MainActivity : AppCompatActivity() {
     fun clearInput(){
         textNumber.text=""
 
+
+    }
+    fun prepareOperation(operation:Operation){
+        lastNumber=textNumber.text.toString().toDouble()
+        clearInput()
+        currentOperation=operation
 
     }
 }
