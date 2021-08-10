@@ -24,22 +24,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addCallBacks() {
-        buttonClear.setOnClickListener {
+       binding.buttonClear.setOnClickListener {
             clearInput()
         }
-        buttonPlus.setOnClickListener { prepareOperation(Operation.plus) }
-        buttonMinus.setOnClickListener { prepareOperation(Operation.minus) }
-        buttonMultiplication.setOnClickListener { prepareOperation(Operation.multi) }
-        buttonDiv.setOnClickListener { prepareOperation(Operation.div) }
-        buttonResult.setOnClickListener {
+       binding.buttonPlus.setOnClickListener { prepareOperation(Operation.plus) }
+       binding.buttonMinus.setOnClickListener { prepareOperation(Operation.minus) }
+        binding.buttonMulti.setOnClickListener { prepareOperation(Operation.multi) }
+        binding.buttonDiv.setOnClickListener { prepareOperation(Operation.div) }
+       binding.buttonResult.setOnClickListener {
          val result= doCurrentOperation()
-            textNumber.text=result.toString()
+           binding.textNumber.text=result.toString()
         }
 
     }
 
     private fun doCurrentOperation():Double {
-        val secondNumber=textNumber.text.toString().toDouble()
+        val secondNumber=binding.textNumber.text.toString().toDouble()
    return   when(currentOperation){
          Operation.plus ->lastNumber + secondNumber
          Operation.minus ->lastNumber - secondNumber
@@ -50,32 +50,32 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
-    private fun initView()
-{
-    buttonPlus=findViewById(R.id.button_plus)
-    buttonMinus=findViewById(R.id.button_minus)
-    buttonMultiplication=findViewById(R.id.button_multi)
-    buttonDiv=findViewById(R.id.button_div)
-    buttonResult=findViewById(R.id.button_result)
-    textNumber=findViewById(R.id.text_number)
-    buttonClear =findViewById(R.id.button_clear)
-}
+//    private fun initView()
+//{
+//    buttonPlus=findViewById(R.id.button_plus)
+//    buttonMinus=findViewById(R.id.button_minus)
+//    buttonMultiplication=findViewById(R.id.button_multi)
+//    buttonDiv=findViewById(R.id.button_div)
+//    buttonResult=findViewById(R.id.button_result)
+//    textNumber=findViewById(R.id.text_number)
+//    buttonClear =findViewById(R.id.button_clear)
+//}
 
     fun onClickNumber(v: View)
     {val newDigit=(v as Button).text.toString()
-        val oldDigit=textNumber.text.toString()
+        val oldDigit=binding.textNumber.text.toString()
         val newTextNumber=oldDigit+newDigit
-        textNumber.text=newTextNumber
+       binding.textNumber.text=newTextNumber
 
 
     }
     fun clearInput(){
-        textNumber.text=""
+       binding.textNumber.text=""
 
 
     }
     fun prepareOperation(operation:Operation){
-        lastNumber=textNumber.text.toString().toDouble()
+        lastNumber=binding.textNumber.text.toString().toDouble()
         clearInput()
         currentOperation=operation
 
