@@ -8,13 +8,7 @@ import android.widget.TextView
 import com.tamara.scientificcalculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var buttonPlus:Button
-    lateinit var buttonMinus:Button
-    lateinit var buttonMultiplication:Button
-    lateinit var buttonDiv:Button
-    lateinit var buttonResult:Button
-    lateinit var textNumber: TextView
-    lateinit var buttonClear:Button
+
 
     var lastNumber:Double=0.0
     var currentOperation:Operation?=null
@@ -23,10 +17,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
-        initView()
+        setContentView(binding.root)
+
         addCallBacks()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+
     }
 
     private fun addCallBacks() {
